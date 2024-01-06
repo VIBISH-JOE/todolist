@@ -12,4 +12,3 @@ while True:
 with open("data.json", "r") as fobj:
     json_data = json.load(fobj)
     print(json_data)
-    
