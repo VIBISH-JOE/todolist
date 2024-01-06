@@ -1,7 +1,6 @@
-import json
+import json 
 
 data_holder = []
-
 def saveTodo():
     while True:    
         todo = input("What would you like to do? ")
@@ -20,7 +19,6 @@ def show():
     with open("data.json", "r") as fobj:
         json_data = [json.loads(line) for line in fobj]
         print(json_data)
-        
 
 saveTodo()
 show()
