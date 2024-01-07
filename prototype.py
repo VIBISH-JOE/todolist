@@ -1,4 +1,4 @@
 import functions as fn
-fn.read()
+fn.read(
 # fn.write()
 fn.markTodo()
