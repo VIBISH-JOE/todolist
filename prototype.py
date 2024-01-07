@@ -2,28 +2,31 @@ import json
 
 data_holder = []
 
-try:
-    with open('data.json', 'r') as fobj:
-        data_holder = json.load(fobj)
-        if len(data_holder) == 0:
-             print("empty")
-except FileNotFoundError:
-    print("No data found.")
-
-def saveJson():
-    while True:
-        todo = input("Enter the todo list (type 'quit' to exit): ")
-        if todo.lower() == 'quit':
+def read():
+    global data_holder
+    try:
+        with open('data.json','r') as fobj:
+            data_holder = json.load(fobj)
+            print('read')
             print(data_holder)
+    except:
+        data_holder = []
+        print('init')
+
+def write():
+    while True:
+        todo = input("Enter the Todo: ")
+        if todo == "quit":
             break
         else:
             data = {
-                "todo": todo,
-                "done": False
+                'todo': todo,
+                'done': False
             }
+            print(data_holder)
             data_holder.append(data)
-            with open("data.json", 'w') as jfobj:
-                json.dump(data_holder, jfobj, indent=2)
+        with open('data.json','w') as fobj:
+            json.dump(data_holder,fobj,indent=2)
 
-# Main
-saveJson()
+read()
+write()
