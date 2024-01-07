@@ -1,24 +1,29 @@
-import json 
+import json
 
 data_holder = []
-def saveTodo():
-    while True:    
-        todo = input("What would you like to do? ")
-        if todo == "quit":
+
+def saveJson():
+    while True:
+        todo = input("Enter the todo list (type 'quit' to exit): ")
+        if todo.lower() == 'quit':
             break
         else:
-            data_master = {"todo": todo, "done": False}
-            data_holder.append(data_master)  
+            data = {
+                "todo": todo
+            }
+            data_holder.append(data)
+            with open("data.json", 'w') as jfobj:
+                json.dump(data_holder, jfobj)
 
-    with open("data.json", "a") as fobj:
-        for data in data_holder:
-            json.dump(data, fobj)
-            fobj.write('\n')
+def showJson():
+    try:
+        with open('data.json', 'r') as fobj:
+            data = json.load(fobj)
+            print(data)
+    except FileNotFoundError:
 
-def show():
-    with open("data.json", "r") as fobj:
-        json_data = [json.loads(line) for line in fobj]
-        print(json_data)
-
-saveTodo()
-show()
+        print("No data found.")
+        
+# Main
+saveJson()
+showJson()
