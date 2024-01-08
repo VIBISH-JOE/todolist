@@ -25,13 +25,14 @@ def write():
             json.dump(data_holder,fobj,indent=2)
         print("done")
 
-def markTodo():
-    mktodo = input("Enter the Todo that you want to mark as done: ")
+def marktodo(mktodo):
+    todo_found = False
     for i in data_holder:
         keylst = list(i.values())
         if mktodo in keylst:
-            print('yes')
+            todo_found = True
+            break
+    if todo_found:
+        return 'yes'
     else:
-        print('nah')
-
-        
+        return 'nah'
