@@ -1,6 +1,14 @@
 import json
 
 lst = []
+try:
+    with open('test.json','r') as fobj:
+        lst = json.load(fobj)
+    print(lst)
+except:
+    lst = []
+
+
 name = input("Enter the name: ")
 user = input("Enter the username: ")
 passwork = input("Enter the password: ")
@@ -15,28 +23,51 @@ dict = {
     "password": passwork,
     "major": IfMajor,
 }
+print(f'{lst} after what i see')
 lst.append(dict)
 with open("test.json",'w') as fobj:  
     json.dump(lst,fobj,indent=2)
 
 with open("test.json",'r') as fobj:
-    data = json.load(fobj)
+    lst = json.load(fobj)
 
-formatteddata = json.dumps(data,indent=2)
+formatteddata = json.dumps(lst,indent=2)
 print('\n')
 print(formatteddata)
 
-changeMajor = input("Do you want to change major? (y/n): ")
-if changeMajor == 'y':
-    major = False
-    for i in data:
-        i['major'] = major
-    with open("test.json",'w') as fobj:  
-        json.dump(data,fobj,indent=2)
-    with open("test.json",'r') as fobj:
-        data = json.load(fobj)
-    formatteddata = json.dumps(data,indent=2)
-    print('\n')
-    print(formatteddata)
+target = input("Enter the username you want to update: ")
+flagFound = True
+for i in lst:
+    if i['name'] == target:
+        flagFound = True
+    else:
+        flagFound = False
+    
+if flagFound:
+    changeName = input("Enter the new updated username: ")
+    for i in lst:
+        try:
+            if i['name'] == target:
+                i['name'] = changeName
+                print('done')
+            with open("test.json",'w') as fobj:  
+                json.dump(lst,fobj,indent=2)
+        except:
+            print('error')
 else:
-    print('alr')
+    print('not found')
+# changeMajor = input("Do you want to change major? (y/n): ")
+# if changeMajor == 'y':
+    # major = False
+    # for i in data:
+        # i['major'] = major
+    # with open("test.json",'w') as fobj:  
+        # json.dump(data,fobj,indent=2)
+    # with open("test.json",'r') as fobj:
+        # data = json.load(fobj)
+    # formatteddata = json.dumps(data,indent=2)
+    # print('\n')
+    # print(formatteddata)
+# else:
+    # print('alr')
+# 
