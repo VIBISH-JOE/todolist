@@ -50,7 +50,7 @@ if flagFound:
             if i['name'] == target:
                 i['name'] = changeName
                 print('done')
-            with open("./test/test.json",'w') as fobj:  
+            with open('./test/test.json','w') as fobj:  
                 json.dump(jsonlst,fobj,indent=2)
         except:
             print('error')

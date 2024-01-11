@@ -1,14 +1,14 @@
 [
   {
-    "todo": "lol",
+    "todo": "shenaaz",
+    "done": false
+  },
+  {
+    "todo": "mariyam",
+    "done": false
+  },
+  {
+    "todo": "ashwin",
     "done": true
-  },
-  {
-    "todo": "hello",
-    "done": false
-  },
-  {
-    "todo": "this is ahsik",
-    "done": false
   }
 ]

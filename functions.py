@@ -10,20 +10,15 @@ def read():
     except:
         data_holder = []
 
-def write():
-    while True:
-        todo = input("Enter the Todo: ")
-        if todo == "quit":
-            break
-        else:
-            data = {
-                'todo': todo,
-                'done': False
-            }
-            data_holder.append(data)
-        with open('data.json','w') as fobj:
-            json.dump(data_holder,fobj,indent=2)
-        print("done")
+def write(todo):
+    data = {
+        'todo': todo,
+        'done': False
+    }
+    data_holder.append(data)
+    with open('data.json','w') as fobj:
+        json.dump(data_holder,fobj,indent=2)
+    print("done")
         
 
 def marktodo(mktodo):
@@ -38,7 +33,24 @@ def marktodo(mktodo):
                 i['done'] = True
                 with open('data.json','w') as fobj:
                     json.dump(data_holder,fobj,indent=2)
+                return 'done'
             except:
                 return 'error'
+            
+    else:
+        return 'element not found'
+
+def delTodo(deltodo):
+    read()
+    flagFound = False
+    for i in data_holder:
+        if i['todo'] == deltodo:
+            flagFound = True
+            break
+    if flagFound:
+        data_holder.remove(i)
+        with open('data.json','w') as fobj:
+            json.dump(data_holder,fobj,indent=2)
+        return 'done'
     else:
         return 'element not found'
