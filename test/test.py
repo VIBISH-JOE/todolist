@@ -1,12 +1,12 @@
 import json
 
-lst = []
+jsonlst = []
 try:
-    with open('test.json','r') as fobj:
-        lst = json.load(fobj)
-    print(lst)
+    with open('./test/test.json','r') as fobj:
+        jsonlst = json.load(fobj)
+    print(jsonlst)
 except:
-    lst = []
+    jsonlst = []
 
 
 name = input("Enter the name: ")
@@ -23,21 +23,21 @@ dict = {
     "password": passwork,
     "major": IfMajor,
 }
-print(f'{lst} after what i see')
-lst.append(dict)
-with open("test.json",'w') as fobj:  
-    json.dump(lst,fobj,indent=2)
+print(f'{jsonlst} after what i see')
+jsonlst.append(dict)
+with open("./test/test.json",'w') as fobj:  
+    json.dump(jsonlst,fobj,indent=2)
 
-with open("test.json",'r') as fobj:
-    lst = json.load(fobj)
+with open("./test/test.json",'r') as fobj:
+    jsonlst = json.load(fobj)
 
-formatteddata = json.dumps(lst,indent=2)
+formatteddata = json.dumps(jsonlst,indent=2)
 print('\n')
 print(formatteddata)
 
 target = input("Enter the username you want to update: ")
 flagFound = True
-for i in lst:
+for i in jsonlst:
     if i['name'] == target:
         flagFound = True
     else:
@@ -45,13 +45,13 @@ for i in lst:
     
 if flagFound:
     changeName = input("Enter the new updated username: ")
-    for i in lst:
+    for i in jsonlst:
         try:
             if i['name'] == target:
                 i['name'] = changeName
                 print('done')
-            with open("test.json",'w') as fobj:  
-                json.dump(lst,fobj,indent=2)
+            with open("./test/test.json",'w') as fobj:  
+                json.dump(jsonlst,fobj,indent=2)
         except:
             print('error')
 else:

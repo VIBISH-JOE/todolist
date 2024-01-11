@@ -28,17 +28,17 @@ def write():
 
 def marktodo(mktodo):
     read()
-    todo_found = False
-    print(data_holder)
+    flagFound = False
     for i in data_holder:
-        keylst = list(i.values())
-        print(keylst)
-        if mktodo in keylst:
-            todo_found = True
+        if i['todo'] == mktodo:
+            flagFound = True
             break
-    if todo_found:
-        keylst[1] = True
-        print(keylst)
-        return 'Found'
+    if flagFound:
+            try:
+                i['done'] = True
+                with open('data.json','w') as fobj:
+                    json.dump(data_holder,fobj,indent=2)
+            except:
+                return 'error'
     else:
-        return 'nah'
+        return 'element not found'
