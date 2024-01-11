@@ -56,18 +56,3 @@ if flagFound:
             print('error')
 else:
     print('not found')
-# changeMajor = input("Do you want to change major? (y/n): ")
-# if changeMajor == 'y':
-    # major = False
-    # for i in data:
-        # i['major'] = major
-    # with open("test.json",'w') as fobj:  
-        # json.dump(data,fobj,indent=2)
-    # with open("test.json",'r') as fobj:
-        # data = json.load(fobj)
-    # formatteddata = json.dumps(data,indent=2)
-    # print('\n')
-    # print(formatteddata)
-# else:
-    # print('alr')
-# 
